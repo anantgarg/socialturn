@@ -1,0 +1,79 @@
+CREATE TABLE `users_accounts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `companyid` int(11) DEFAULT NULL,
+  `accountid` int(11) DEFAULT NULL,
+  `userid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `companyid` int(11) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `active` int(1) DEFAULT '0',
+  `type` int(1) DEFAULT '0',
+  `record_created` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `suggestions` (
+  `id` varchar(45) NOT NULL,
+  `text` text,
+  `screen_name` varchar(255) DEFAULT NULL,
+  `media` text,
+  `list` varchar(45) DEFAULT NULL,
+  `record_created` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `companies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `plan` int(11) DEFAULT NULL,
+  `active` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `accounts_schedule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `companyid` int(11) DEFAULT NULL,
+  `accountid` int(11) DEFAULT NULL,
+  `userid` int(11) DEFAULT NULL,
+  `timezone` varchar(45) DEFAULT NULL,
+  `day` int(11) DEFAULT NULL,
+  `time` int(11) DEFAULT NULL,
+  `record_created` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `accounts_queue` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `companyid` int(11) DEFAULT NULL,
+  `accountid` int(11) DEFAULT NULL,
+  `userid` int(11) DEFAULT NULL,
+  `message` text,
+  `image` text,
+  `suggestion_id` varchar(50) DEFAULT '0',
+  `scheduled_time` int(11) DEFAULT '0',
+  `sent_time` int(11) DEFAULT '0',
+  `error` text,
+  `record_created` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `accounts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `companyid` int(11) DEFAULT NULL,
+  `type` enum('google','facebook','twitter') DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `data1` text,
+  `data2` text,
+  `data3` text,
+  `data4` text,
+  `active` int(11) DEFAULT '0',
+  `record_created` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
