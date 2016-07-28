@@ -93,7 +93,7 @@ function post() {
 	  }
 
 		if ($post['type'] == 'twitter') {
-			if (empty($post['media'])) {
+			if (empty($post['image'])) {
 				$twitter = new TwitterOAuth(TWITTER_APIKEY, TWITTER_APISECRET, $post['data2'], $post['data3']);
 				$account = $twitter->get('account/verify_credentials');
 				$status = $twitter->post('statuses/update', array('status' => $post['message']));
@@ -103,7 +103,7 @@ function post() {
 				}
 
 			} else {
-				$file = $post['media'];
+				$file = $post['image'];
 
 				$params = array(
 					'media[]' => file_get_contents($file)
